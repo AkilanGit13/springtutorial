@@ -13,13 +13,4 @@ public class Product {
 	private String description;
 	private String image;
 }
-/*
- * 				{
-                    id:1,
-                    title:'...',
-                    price:'...',
-                    category:'...',
-                    description:'...',
-                    image:'...'
-                },
- */
+
