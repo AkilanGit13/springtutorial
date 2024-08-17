@@ -41,13 +41,15 @@ public class ProductServiceFakeStoreImpl implements ProductService{
 	@Override
 	public Product getProductById(long id) {
 		FakeStoreProductDTO fakeStoreProductDTO = restTemplate.getForObject("https://fakestoreapi.com/products/"+id, FakeStoreProductDTO.class);
+		if(fakeStoreProductDTO == null) {
+			return null;
+		}
 		Product product = convertFakeStoreProductDTOToProduct(fakeStoreProductDTO);
 		return product;
 	}
 
 	@Override
 	public Product saveProduct(Product product) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
