@@ -1,5 +1,6 @@
 package com.example.springtutorial.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -34,8 +35,15 @@ public class ProductServiceFakeStoreImpl implements ProductService{
 	
 	@Override
 	public List<Product> getProducts() {
+		FakeStoreProductDTO[] list = restTemplate.getForObject("https://fakestoreapi.com/products", FakeStoreProductDTO[].class);
 		
-		return null;
+		List<Product> products = new ArrayList<>();
+		
+		for(FakeStoreProductDTO i : list) {
+			products.add(convertFakeStoreProductDTOToProduct(i));
+		}
+		
+		return products;
 	}
 
 	@Override

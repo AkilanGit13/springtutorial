@@ -1,5 +1,8 @@
 package com.example.springtutorial.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,5 +24,11 @@ public class ProductController {
 	public Product getProductById(@PathVariable("id") long id) {
 		Product product = productService.getProductById(id); 
 		return product;
+	}
+	
+	@GetMapping
+	public List<Product> getProducts(){
+		List<Product> products = productService.getProducts();
+		return products;
 	}
 }
