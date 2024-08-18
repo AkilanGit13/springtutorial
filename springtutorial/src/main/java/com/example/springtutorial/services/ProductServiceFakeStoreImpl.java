@@ -81,7 +81,7 @@ public class ProductServiceFakeStoreImpl implements ProductService{
 		RequestCallback requestCallback = restTemplate.httpEntityCallback(productDTO, ProductDTO.class);
 		HttpMessageConverterExtractor<ProductDTO> responseExtractor =
 				new HttpMessageConverterExtractor<>(ProductDTO.class, restTemplate.getMessageConverters());
-		ProductDTO updatedProductDTO = restTemplate.execute("https://fakestoreapi.com/products/"+id, HttpMethod.PUT, requestCallback, responseExtractor);
+		ProductDTO updatedProductDTO = restTemplate.execute("https://fakestoreapi.com/products/"+id, HttpMethod.PATCH, requestCallback, responseExtractor);
 		
 		Product product = convertFakeStoreProductDTOToProduct(updatedProductDTO);
 		
