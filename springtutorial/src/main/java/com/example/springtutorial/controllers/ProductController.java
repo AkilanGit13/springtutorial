@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springtutorial.dtos.ProductDTO;
+import com.example.springtutorial.exceptions.InvalidProductIdException;
 import com.example.springtutorial.models.Product;
 import com.example.springtutorial.services.ProductService;
 
@@ -24,7 +25,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{id}")
-	public Product getProductById(@PathVariable("id") long id) {
+	public Product getProductById(@PathVariable("id") long id) throws InvalidProductIdException {
 		Product product = productService.getProductById(id); 
 		return product;
 	}

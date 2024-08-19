@@ -10,6 +10,7 @@ import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.springtutorial.dtos.ProductDTO;
+import com.example.springtutorial.exceptions.InvalidProductIdException;
 import com.example.springtutorial.models.Category;
 import com.example.springtutorial.models.Product;
 
@@ -50,10 +51,10 @@ public class ProductServiceFakeStoreImpl implements ProductService{
 	}
 
 	@Override
-	public Product getProductById(Long id) {
+	public Product getProductById(Long id) throws InvalidProductIdException{
 		ProductDTO fakeStoreProductDTO = restTemplate.getForObject("https://fakestoreapi.com/products/"+id, ProductDTO.class);
 		if(fakeStoreProductDTO == null) {
-			return null;
+			throw new InvalidProductIdException(id, "Product Id is invalid");
 		}
 		Product product = convertFakeStoreProductDTOToProduct(fakeStoreProductDTO);
 		return product;
