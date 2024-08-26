@@ -11,16 +11,15 @@ import com.example.springtutorial.exceptions.InvalidProductIdException;
 import com.example.springtutorial.models.Product;
 import com.example.springtutorial.repositories.ProductRepository;
 
-@Service
-@Primary
+@Service("productServiceMyStoreImpl")
+//@Primary
 public class ProductServiceMyStoreImpl implements ProductService{
 	@Autowired
 	ProductRepository productRepository;
 	
 	@Override
 	public List<Product> getProducts() {
-		productRepository.findAll();
-		return null;
+		return productRepository.findAll();
 	}
 
 	@Override

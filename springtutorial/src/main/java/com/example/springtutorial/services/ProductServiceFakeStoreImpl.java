@@ -14,7 +14,7 @@ import com.example.springtutorial.exceptions.InvalidProductIdException;
 import com.example.springtutorial.models.Category;
 import com.example.springtutorial.models.Product;
 
-@Service
+@Service("productServiceFakeStoreImpl")
 public class ProductServiceFakeStoreImpl implements ProductService{
 	public RestTemplate restTemplate;
 	
