@@ -2,7 +2,6 @@ package com.example.springtutorial.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,14 +16,15 @@ import com.example.springtutorial.dtos.ProductDTO;
 import com.example.springtutorial.exceptions.InvalidProductIdException;
 import com.example.springtutorial.models.Product;
 import com.example.springtutorial.services.ProductService;
+import com.example.springtutorial.services.ProductServiceByDB;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
 	
-	ProductService productService;
+	ProductServiceByDB productService;
 	
-	public ProductController(@Qualifier("productServiceMyStoreImpl") ProductService productService) {
+	public ProductController(@Qualifier("productServiceMyStoreImpl") ProductServiceByDB productService) {
 		this.productService = productService;
 	}
 	
@@ -33,6 +33,12 @@ public class ProductController {
 		Product product = productService.getProductById(id); 
 		return product;
 	}
+	
+//	@GetMapping("/{title}")
+//	public Product getProductByTitle(@PathVariable("title") String title) throws InvalidProductIdException {
+//		Product product = productService. (title); 
+//		return product;
+//	}
 	
 	@GetMapping
 	public List<Product> getProducts(){
@@ -46,8 +52,9 @@ public class ProductController {
 	}
 	
 	@PatchMapping("/{id}")
-	public Product updateProduct(@PathVariable("id") Long id, @RequestBody ProductDTO productDTO) {
-		return productService.updateProduct(id, productDTO);
+	public Product updateProduct(@PathVariable("id") Long id, @RequestBody Product product) throws InvalidProductIdException {
+		product.setId(id);
+		return productService.updateProduct(id, product);
 	}
 	
 	@PutMapping("/{id}")

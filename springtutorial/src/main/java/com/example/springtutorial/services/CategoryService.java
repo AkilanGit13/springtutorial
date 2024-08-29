@@ -24,6 +24,13 @@ public class CategoryService {
 		return categories;
 	}
 	
+	public Category getCategory(Long id) throws Exception {
+		Optional<Category> category = categoryRepository.findById(id);
+		if(category.isEmpty()) throw new Exception("invalid category id");
+		
+		return category.get();
+	}
+	
 	public List<Product> getProductsByCategoryId(Long id){
 		Optional<Category> category = categoryRepository.findById(id);
 		List<Product> categoryProducts = null;

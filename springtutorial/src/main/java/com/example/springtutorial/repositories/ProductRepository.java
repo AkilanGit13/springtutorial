@@ -8,8 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.example.springtutorial.models.Product;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long>{	
-//	List<Product> findByCategory(String title);
+public interface ProductRepository extends JpaRepository<Product, Long>{
 
-//	List<Product> findByCategoryId(Long categoryId);	
+	Product findByTitle(String title);
+
+
 }
